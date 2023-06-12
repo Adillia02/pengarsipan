@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-body">
                             <div class="form-group mb-4">
-                                <label for="jenis_akta">Jenis Akta <b class="text-danger">*</b></label>
+                                <label for="jenis_akta">Jenis Akta<b class="text-danger">*</b></label>
                                 <select class="form-control" id="jenis_akta" name="jenis_akta">
                                     <option value="">--Pilih Jenis Akta--</option>
 
@@ -36,7 +36,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="nama">Nama <b class="text-danger">*</b></label>
+                                <label for="nama"><b class="text-danger">*</b></label>
                                 <input class="form-control" type="text" name="nama" id="nama">
                                 @error('nama')
                                     <span class="text-danger">{{ $message }}</span>

@@ -5,7 +5,7 @@
         @csrf
         <div class="form-body">
             <div class="form-group mb-4">
-                <label for="nama_usaha">Nama Usaha <b class="text-danger">*</b></label>
+                <label for="nama_usaha">Nama Usaha<b class="text-danger">*</b></label>
                 <select class="form-control js-example-basic-single" id="nama_usaha" name="nama_usaha">
                     @foreach ($akta_baru as $akta)
                         <option value="{{ $akta->id }}">{{ $akta->business_name }} - {{ $akta->deed_number }}</option>
@@ -13,7 +13,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="file_persyaratan">Persyaratan <b class="text-danger">*</b></label>
+                <label for="file_persyaratan">Persyaratan<b class="text-danger">*</b></label>
                 <input class="form-control" type="file" name="file_persyaratan" id="file_persyaratan">
             </div>
         </div>
