@@ -121,7 +121,7 @@
             firstCopy($("#nama_usaha").find(":selected").data('status-copy'));
 
             $("#nama_usaha").on("change", function(e){                // firstCopy(this.data('status-copy'));
-                firstCopy(this.data('status-copy'));
+                firstCopy($(this).find(':selected').data('status-copy'));
             });
 
             function firstCopy(value){
