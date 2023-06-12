@@ -23,8 +23,3 @@
         </div>
     </form>
 </div>
-
-@section('js')
-    <script>
-    </script>
-@endsection
