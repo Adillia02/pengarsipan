@@ -1,26 +1,4 @@
-{{-- @section('css')
-    <link href="{{ asset('dist/css/select2.min.css') }}" rel="stylesheet">
-@endsection  --}}
-
-
 <div class="card p-4">
-    @if(session('status'))
-        <div class="col-12 mb-3">
-            <div id="alert-status" class="alert text-white {{ session('status') == 1 ? 'alert-success bg-success' : 'alert-danger bg-danger' }} alert-dismissible fade show">
-                @if (session('status') == 1)
-                    <i class="fas fa-lg fa-check-circle mr-2"></i>
-                    <span>Data Berhasil @if (session('type') == 'create') Ditambahkan @elseif(session('type') == 'update') Diperbarui @else Dihapus @endif</span>
-                @else
-                    <i class="fas fa-lg fa-times-circle mr-2"></i>
-                    <span>Data Gagal @if (session('type') == 'create') Ditambahkan @elseif(session('type') == 'update') Diperbarui @else Dihapus @endif</span>
-                @endif
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
-
     <form action="{{ route('akta_baru.storePenghadap') }}" method="post" enctype="multipart/form-data" id="form_penghadap">
         @csrf
         <div class="form-body">
@@ -65,20 +43,3 @@
         </div>
     </form>
 </div>
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-
-            if($("#alert-status").length > 0){
-                setTimeout(() => {
-                    $('#alert-status').alert('close');
-                }, 3000);
-            }
-        });
-
-
-    </script>
-
-
-@endsection
