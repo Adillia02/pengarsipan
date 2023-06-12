@@ -34,22 +34,34 @@
                                         <option value="{{ $data->id }}" data-status-copy="{{ $data->deed_copy === ""  ? 'true' : 'false' }}">{{ $data->business_name }} - {{ $data->deed_number }}</option>
                                     @endforeach
                                 </select>
+                                @error('nama_usaha')
+                                    <span class="text-danger">{{ $message}}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="nama">Nama<b class="text-danger">*</b></label>
                                 <input class="form-control" type="text" name="nama" id="nama">
+                                @error('nama')
+                                    <span class="text-danger">{{ $message}}</span>
+                                @enderror
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="no_ktp">No KTP<b class="text-danger">*</b></label>
                                         <input class="form-control" type="number" name="no_ktp" id="no_ktp">
+                                        @error('no_ktp')
+                                            <span class="text-danger">{{ $message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="no_hp">No HP<b class="text-danger">*</b></label>
                                         <input class="form-control" type="number" name="no_hp" id="no_hp">
+                                        @error('no_hp')
+                                            <span class="text-danger">{{ $message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -58,12 +70,18 @@
                                     <div class="form-group">
                                         <label for="tanggal_keluar">Tanggal Akta Keluar<b class="text-danger">*</b></label>
                                         <input class="form-control" type="date" name="tanggal_keluar" id="tanggal_keluar">
+                                        @error('tanggal_keluar')
+                                            <span class="text-danger">{{ $message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="jumlah">Jumlah Salinan<b class="text-danger">*</b></label>
                                         <input class="form-control" type="number" name="jumlah" id="jumlah">
+                                        @error('jumlah')
+                                            <span class="text-danger">{{ $message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

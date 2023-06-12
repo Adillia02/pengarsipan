@@ -44,6 +44,7 @@ class AktaKeluarController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateRequest($request);
         DB::beginTransaction();
         try {
 
@@ -52,7 +53,7 @@ class AktaKeluarController extends Controller
             $pdfFileSalinan->move('files/salinan/', $pdfFileNameSalinan);
 
             $akta_keluar = AktaKeluar::create([
-                'deed_id' => $request->akta,
+                'deed_id' => $request->nama_usaha,
                 'name' => $request->nama,
                 'no_ktp' => $request->no_ktp,
                 'telephone' => $request->no_hp,
@@ -94,5 +95,21 @@ class AktaKeluarController extends Controller
         $akta_keluar = AktaKeluar::findOrFail($id);
 
         return view("akta_baru.show", ['akta_keluar' => $akta_keluar]);
+    }
+    protected function validateRequest(Request $request)
+    {
+        $request->validate([
+            'nama_usaha' => 'required',
+            'nama' => 'required',
+            'no_ktp' => 'required|numeric|digits:16',
+            'no_hp' => 'required|numeric|digits_between:12, 15',
+            'tanggal_keluar' => 'required',
+            'jumlah' => 'required',
+        ],[
+            'required' => ':Attribute harus diisi.',
+            'numeric' => ':Attribute harus angka.',
+            'digits_between' => ':Attribute harus di antara :min hingga :max digit.',
+            'digits' => ':Attribute harus :digits digit.',
+        ]);
     }
 }
