@@ -43,8 +43,8 @@
                             </div>
                         </div>
                         <div class="form-action float-right">
-                            <button class="btn btn-rounded btn-primary" type="submit" name="submit">Perbarui</button>
                             <a class="btn btn-rounded btn-light" href="{{ route('jenis_akta.index') }}">Batal</a>
+                            <button class="btn btn-rounded btn-primary" type="submit" name="submit">Perbarui</button>
                         </div>
                     </form>
                 </div>

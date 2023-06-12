@@ -16,6 +16,22 @@
         </div>
     </div>
     <div class="container-fluid">
+        @if(session('status'))
+        <div class="col-12 mb-3">
+            <div id="alert-status" class="alert text-white {{ session('status') == 1 ? 'alert-success bg-success' : 'alert-danger bg-danger' }} alert-dismissible fade show">
+                @if (session('status') == 1)
+                    <i class="fas fa-lg fa-check-circle mr-2"></i>
+                    <span>Data Berhasil @if (session('type') == 'create') Ditambahkan @elseif(session('type') == 'update') Diperbarui @else Dihapus @endif</span>
+                @else
+                    <i class="fas fa-lg fa-times-circle mr-2"></i>
+                    <span>Data Gagal @if (session('type') == 'create') Ditambahkan @elseif(session('type') == 'update') Diperbarui @else Dihapus @endif</span>
+                @endif
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        @endif
         <div class="flex-row">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -50,7 +66,8 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#tableJenisAkta').DataTable();
+            $('.js-example').select2();
+            $('.js-example-basic-single').select2();
 
             if($("#alert-status").length > 0){
                 setTimeout(() => {

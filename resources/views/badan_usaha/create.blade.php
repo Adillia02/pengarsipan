@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-body">
                             <div class="form-group">
-                                <label for="nama">Nama<b class="text-danger">*</b></label>
+                                <label for="nama">Nama Badan Usaha<b class="text-danger">*</b></label>
                                 <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama">
                                 @error('nama')
                                     <span class="text-danger">{{ $message}}</span>
@@ -49,8 +49,8 @@
                             </div>
                         </div>
                         <div class="form-action float-right">
-                            <button class="btn btn-rounded btn-primary" type="submit" name="submit">Simpan</button>
                             <a class="btn btn-rounded btn-light" href="{{ route('badan_usaha.index') }}">Batal</a>
+                            <button class="btn btn-rounded btn-primary" type="submit" name="submit">Simpan</button>
                         </div>
                     </form>
                 </div>
