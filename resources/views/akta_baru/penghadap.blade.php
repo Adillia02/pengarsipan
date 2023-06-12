@@ -26,7 +26,7 @@
         <div class="form-body">
             <div class="form-group mb-4">
                 <label for="akta">Nama Usaha<b class="text-danger">*</b></label><br>
-                <select class="form-control js-example" id="akta" name="akta" >
+                <select class="form-control js-example" id="akta" name="akta" style="width:100%">
                     @foreach ($akta_baru as $data)
                         <option value="{{ $data->id }}">{{ $data->business_name }} - {{ $data->deed_number }}</option>
                     @endforeach
@@ -69,7 +69,6 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.js-example').select2();
 
             if($("#alert-status").length > 0){
                 setTimeout(() => {

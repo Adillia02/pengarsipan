@@ -6,7 +6,7 @@
         <div class="form-body">
             <div class="form-group mb-4">
                 <label for="nama_usaha">Nama Usaha<b class="text-danger">*</b></label>
-                <select class="form-control js-example-basic-single" id="nama_usaha" name="nama_usaha">
+                <select class="form-control js-example-basic-single" id="nama_usaha" name="nama_usaha" style="width:100%">
                     @foreach ($akta_baru as $akta)
                         <option value="{{ $akta->id }}">{{ $akta->business_name }} - {{ $akta->deed_number }}</option>
                     @endforeach
@@ -26,8 +26,5 @@
 
 @section('js')
     <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2();
-        });
     </script>
 @endsection

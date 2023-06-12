@@ -109,6 +109,8 @@
     <script>
 
         $(document).ready(function() {
+            $('.js-example').select2();
+            $('.js-example-basic-single').select2();
 
             if($("#alert-status").length > 0){
                 setTimeout(() => {
