@@ -196,7 +196,7 @@ class AktaBaruController extends Controller
     // Function Penghadap
     public function storePenghadap(Request $requestPenghadap)
     {
-        // $this->validateRequest($request);
+        $this->validateRequestPenghadap($requestPenghadap);
 
         DB::beginTransaction();
         try {
@@ -244,14 +244,61 @@ class AktaBaruController extends Controller
             ->with('tab', 'penghadap');
     }
 
-
-
     public function show($id)
     {
         $akta = Akta::findorfail($id);
 
         return view("akta_baru.show", ['akta' => $akta]);
+    }
 
+    public function storeLampiran(Request $requestLampiran)
+    {
+        // $this->validateRequestLampiran($requestLampiran);
+
+        DB::beginTransaction();
+        try {
+
+            // $pdfFileSalinan = $request->file('salinan');
+            // $pdfFileNameSalinan = date('Ymdhis'). '_' . 'Salinan Akta' . '_' . $request->nama_usaha. '.' . $request->file('salinan')->getClientOriginalExtension();
+            // $pdfFileSalinan->move('files/salinan/', $pdfFileNameSalinan);
+            $penghadap = Penghadap::create([
+                'deed_id' => $requestPenghadap->akta,
+                'name' => $requestPenghadap->nama_penghadap,
+                'part' => $requestPenghadap->penghadap_sebagai,
+                'description' => $requestPenghadap->deskripsi,
+                'created_id' => 1,
+                'updated_id' => 1,
+            ]);
+            // var_dump($penghadap); die;
+            // dd($requestPenghadap->all());
+
+            // $pdfFileDraft = $requestPenghadap->file('draft');
+            // $pdfFileNameDraft = date('Ymdhis'). '_' . 'Draft Akta' . '_' . $request->nama_usaha. '.' . $request->file('draft')->getClientOriginalExtension();
+            // $pdfFileDraft->move('files/draft/', $pdfFileNameDraft);
+
+
+            // $persyaratan_akta = PersyaratanAkta::create([
+            //     'attendess_id' => $penghadap->id,
+            //     'deed_id' => ,
+            //     'requirement_id' => ,
+            //     'file' => $request->file_penghadap,
+            //     'created_id' => 1,
+            //     'updated_id' => 1,
+            // ]);
+
+            DB::commit();
+            $status = 1;
+        } catch (\Error $e) {
+
+            DB::rollBack();
+            $status = 0;
+        }
+
+        return redirect()
+            ->route('akta_baru.create')
+            ->with('status', $status)
+            ->with('type', 'create')
+            ->with('tab', 'penghadap');
     }
 
     protected function validateRequest(Request $request)
@@ -264,6 +311,20 @@ class AktaBaruController extends Controller
             'nama_usaha' => 'required',
             'alamat' => 'required',
             'draft' => 'required',
+            'akta' => 'required',
+            'nama_penghadap' => 'required',
+            'penghadap_sebagai' => 'required',
+        ],[
+            'required' => ':Attribute harus diisi.',
+        ]);
+    }
+
+    protected function validateRequestPenghadap(Request $request)
+    {
+        $request->validate([
+            'akta' => 'required',
+            'nama_penghadap' => 'required',
+            'penghadap_sebagai' => 'required',
         ],[
             'required' => ':Attribute harus diisi.',
         ]);

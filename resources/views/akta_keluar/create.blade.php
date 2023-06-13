@@ -29,7 +29,7 @@
                         <div class="form-body">
                             <div class="form-group mb-4">
                                 <label for="nama_usaha">Nama Usaha<b class="text-danger">*</b></label>
-                                <select class="js-example-basic-single form-control" id="nama_usaha" name="nama_usaha">
+                                <select class="js-example-basic-single form-control @error('nama_usaha') is-invalid @enderror" id="nama_usaha" name="nama_usaha">
                                     @foreach ($akta as $data)
                                         <option value="{{ $data->id }}" data-status-copy="{{ $data->deed_copy === ""  ? 'true' : 'false' }}">{{ $data->business_name }} - {{ $data->deed_number }}</option>
                                     @endforeach
@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="nama">Nama<b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="nama" id="nama">
+                                <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama">
                                 @error('nama')
                                     <span class="text-danger">{{ $message}}</span>
                                 @enderror
@@ -49,7 +49,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="no_ktp">No KTP<b class="text-danger">*</b></label>
-                                        <input class="form-control" type="number" name="no_ktp" id="no_ktp">
+                                        <input class="form-control @error('no_ktp') is-invalid @enderror" type="number" name="no_ktp" id="no_ktp">
                                         @error('no_ktp')
                                             <span class="text-danger">{{ $message}}</span>
                                         @enderror
@@ -58,7 +58,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="no_hp">No HP<b class="text-danger">*</b></label>
-                                        <input class="form-control" type="number" name="no_hp" id="no_hp">
+                                        <input class="form-control @error('no_hp') is-invalid @enderror" type="number" name="no_hp" id="no_hp">
                                         @error('no_hp')
                                             <span class="text-danger">{{ $message}}</span>
                                         @enderror
@@ -69,7 +69,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tanggal_keluar">Tanggal Akta Keluar<b class="text-danger">*</b></label>
-                                        <input class="form-control" type="date" name="tanggal_keluar" id="tanggal_keluar">
+                                        <input class="form-control @error('tanggal_keluar') is-invalid @enderror" type="date" name="tanggal_keluar" id="tanggal_keluar">
                                         @error('tanggal_keluar')
                                             <span class="text-danger">{{ $message}}</span>
                                         @enderror

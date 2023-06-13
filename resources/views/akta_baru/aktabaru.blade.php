@@ -6,8 +6,8 @@
                 <div class="col">
                     <div class="form-group mb-4">
                         <label for="badan_usaha">Badan Usaha<b class="text-danger">*</b></label>
-                        <select class="form-control" id="badan_usaha" name="badan_usaha">
-                            <option value="">--Pilih Badan Usaha--</option>
+                        <select class="form-control @error('badan_usaha') is-invalid @enderror" id="badan_usaha" name="badan_usaha">
+                            <option value="">-Pilih Badan Usaha-</option>
                             @foreach ($badan_usaha as $badan_usaha)
                                 <option value="{{ $badan_usaha->id }}">{{ $badan_usaha->name }} - {{ $badan_usaha->abbreviation }}</option>
                             @endforeach
@@ -20,8 +20,8 @@
                 <div class="col">
                     <div class="form-group mb-4">
                         <label for="jenis_akta">Jenis Akta<b class="text-danger">*</b></label>
-                        <select class="form-control" id="jenis_akta" name="jenis_akta">
-                            <option value="">--Pilih Badan Usaha--</option>
+                        <select class="form-control @error('jenis_akta') is-invalid @enderror" id="jenis_akta" name="jenis_akta">
+                            <option value="">-Pilih Jenis Akta-</option>
                             @foreach ($jenis_akta as $jenis)
                                 <option value="{{ $jenis->id }}">{{ $jenis->name }}</option>
                             @endforeach
@@ -36,7 +36,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="nomor_akta">Nomor Akta<b class="text-danger">*</b></label>
-                        <input class="form-control" type="number" name="nomor_akta" id="nomor_akta">
+                        <input class="form-control @error('nomor_akta') is-invalid @enderror" type="number" name="nomor_akta" id="nomor_akta">
                         @error('nomor_akta')
                             <span class="text-danger">{{ $message}}</span>
                         @enderror
@@ -45,7 +45,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="tanggal_akta">Tanggal Akta<b class="text-danger">*</b></label>
-                        <input class="form-control" type="date" name="tanggal_akta" id="tanggal_akta">
+                        <input class="form-control @error('tanggal_akta') is-invalid @enderror" type="date" name="tanggal_akta" id="tanggal_akta">
                         @error('tanggal_akta')
                             <span class="text-danger">{{ $message}}</span>
                         @enderror
@@ -55,21 +55,21 @@
             </div>
             <div class="form-group">
                 <label for="nama_usaha">Nama Usaha<b class="text-danger">*</b></label>
-                <input class="form-control" type="text" name="nama_usaha" id="nama_usaha">
+                <input class="form-control @error('nama_usaha') is-invalid @enderror" type="text" name="nama_usaha" id="nama_usaha">
                 @error('nama_usaha')
                     <span class="text-danger">{{ $message}}</span>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="alamat">Alamat<b class="text-danger">*</b></label>
-                <input class="form-control" type="text" name="alamat" id="alamat">
+                <input class="form-control @error('alamat') is-invalid @enderror" type="text" name="alamat" id="alamat">
                 @error('alamat')
                     <span class="text-danger">{{ $message}}</span>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="draft">Draft<b class="text-danger">*</b></label>
-                <input class="form-control" type="file" name="draft" id="draft">
+                <input class="form-control @error('draft') is-invalid @enderror" type="file" name="draft" id="draft">
                 @error('draft')
                     <span class="text-danger">{{ $message}}</span>
                 @enderror

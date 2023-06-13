@@ -24,7 +24,7 @@
                         <div class="form-body">
                             <div class="form-group mb-4">
                                 <label for="jenis_akta">Jenis Akta<b class="text-danger">*</b></label>
-                                <select class="form-control" id="jenis_akta" name="jenis_akta">
+                                <select class="form-control @error('jenis_akta') is-invalid @enderror" id="jenis_akta" name="jenis_akta">
                                     <option value="">-Pilih Jenis Akta-</option>
 
                                     @foreach ($jenis_akta as $jenis)
@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="nama">Nama Persyaratan<b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="nama" id="nama">
+                                <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama">
                                 @error('nama')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -50,7 +50,7 @@
                                 <label for="status">Status</label>
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="status" id="status"
-                                        value="1">
+                                        value="1" checked>
                                     <label for="status" class="custom-control-label">Aktif</label>
                                 </div>
                             </div>

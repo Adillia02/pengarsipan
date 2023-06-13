@@ -24,7 +24,7 @@
                         <div class="form-body">
                             <div class="form-group">
                                 <label for="nama">Nama<b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="nama" id="nama">
+                                <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama">
                                 @error('nama')
                                     <span class="text-danger">{{ $message}}</span>
                                 @enderror

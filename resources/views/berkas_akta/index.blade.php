@@ -17,7 +17,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            
+
             @if(session('status'))
                 <div class="col-12 mb-3">
                     <div id="alert-status" class="alert text-white {{ session('status') == 1 ? 'alert-success bg-success' : 'alert-danger bg-danger' }} alert-dismissible fade show">
@@ -42,7 +42,7 @@
                         <a class="nav-item nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" id="nav-{{ $data->id }}-tab" data-toggle="tab" href="#nav-{{ $data->id }}" role="tab"
                             aria-controls="nav-{{ $data->id }}" aria-selected="true">{{ $data->name }}</a>
                         @endforeach
-                        
+
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -65,8 +65,8 @@
                                                 <td>{{ $akta->business_name }}</td>
                                                 <td>{{ $akta->address }}</td>
                                                 <td class="text-center">
-                                                    <a class="btn btn-rounded btn-primary btn-sm" href="{{ route('berkas_akta.show', ['id' => $akta->id]) }}">Lihat</a>
-                
+                                                    <a class="btn-sm btn-rounded btn-primary" href="{{ route('berkas_akta.show', ['id' => $akta->id]) }}"><i class="fas fa-eye" title="lihat"> </i> Lihat</a>
+
                                                     </form>
                                                 </td>
                                             </tr>
@@ -86,7 +86,7 @@
     <script>
         $(document).ready(function() {
             $('.table-datatables').DataTable();
-            
+
             if($("#alert-status").length > 0){
                 setTimeout(() => {
                     $('#alert-status').alert('close');

@@ -4,27 +4,39 @@
         <div class="form-body">
             <div class="form-group mb-4">
                 <label for="akta">Nama Usaha<b class="text-danger">*</b></label><br>
-                <select class="form-control js-example" id="akta" name="akta" style="width:100%">
+                <select class="form-control js-example @error('akta') is-invalid @enderror" id="akta" name="akta" style="width:100%">
+                    <option value="">-Pilih Akta-</option>
+
                     @foreach ($akta_baru as $data)
-                        <option value="{{ $data->id }}">{{ $data->business_name }} - {{ $data->deed_number }}</option>
+                        <option value="{{ $data->id }}">[{{ $data->badan_usaha->name }}] - {{ $data->business_name }} - {{ $data->deed_number }}</option>
                     @endforeach
                 </select>
+                @error('akta')
+                    <span class="text-danger">{{ $message}}</span>
+                @enderror
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="nama_penghadap">Nama Penghadap<b class="text-danger">*</b></label>
-                        <input class="form-control" type="text" name="nama_penghadap" id="nama_penghadap">
+                        <input class="form-control @error('nama_penghadap') is-invalid @enderror" type="text" name="nama_penghadap" id="nama_penghadap">
+                        @error('nama_penghadap')
+                            <span class="text-danger">{{ $message}}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="penghadap_sebagai">Penghadap Sebagai<b class="text-danger">*</b></label>
-                        <select class="form-control" id="penghadap_sebagai" name="penghadap_sebagai">
+                        <select class="form-control @error('penghadap_sebagai') is-invalid @enderror" id="penghadap_sebagai" name="penghadap_sebagai">
+                                <option value="">-Pilih Penghadap Sebagai-</option>
                                 <option value="Penghadap 1">Penghadap 1</option>
                                 <option value="Penghadap 2">Penghadap 2</option>
                                 <option value="Penghadap 3">Penghadap 3</option>
                         </select>
+                        @error('penghadap_sebagai')
+                            <span class="text-danger">{{ $message}}</span>
+                        @enderror
                     </div>
                 </div>
             </div>

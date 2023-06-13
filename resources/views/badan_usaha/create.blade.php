@@ -30,8 +30,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="nama">Singkatan<b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="singkatan" id="singkatan">
+                                <label for="singkatan">Singkatan<b class="text-danger">*</b></label>
+                                <input class="form-control @error('singkatan') is-invalid @enderror" type="text" name="singkatan" id="singkatan">
                                 @error('singkatan')
                                     <span class="text-danger">{{ $message}}</span>
                                 @enderror
