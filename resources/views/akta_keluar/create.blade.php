@@ -30,6 +30,7 @@
                             <div class="form-group mb-4">
                                 <label for="nama_usaha">Nama Usaha<b class="text-danger">*</b></label>
                                 <select class="js-example-basic-single form-control @error('nama_usaha') is-invalid @enderror" id="nama_usaha" name="nama_usaha">
+                                    <option value="">- Pilih Nama Usaha-</option>
                                     @foreach ($akta as $data)
                                         <option value="{{ $data->id }}" data-status-copy="{{ $data->deed_copy === ""  ? 'true' : 'false' }}">{{ $data->business_name }} - {{ $data->deed_number }}</option>
                                     @endforeach
@@ -78,7 +79,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="jumlah">Jumlah Salinan<b class="text-danger">*</b></label>
-                                        <input class="form-control" type="number" name="jumlah" id="jumlah">
+                                        <input class="form-control @error('jumlah') is-invalid @enderror" type="number" name="jumlah" id="jumlah">
                                         @error('jumlah')
                                             <span class="text-danger">{{ $message}}</span>
                                         @enderror

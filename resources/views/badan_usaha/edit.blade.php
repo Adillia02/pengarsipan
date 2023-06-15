@@ -24,15 +24,15 @@
                         @method('PUT')
                         <div class="form-body">
                             <div class="form-group">
-                                <label for="nama">Nama <b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="nama" id="nama" value="{{ $badan_usaha->name }}">
+                                <label for="nama">Nama<b class="text-danger">*</b></label>
+                                <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ $badan_usaha->name }}">
                                 @error('nama')
                                     <span class="text-danger">{{ $message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="singkatan">Singkatan <b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="singkatan" id="singkatan" value="{{ $badan_usaha->abbreviation }}">
+                                <label for="singkatan">Singkatan<b class="text-danger">*</b></label>
+                                <input class="form-control @error('singkatan') is-invalid @enderror" type="text" name="singkatan" id="singkatan" value="{{ $badan_usaha->abbreviation }}">
                                 @error('singkatan')
                                     <span class="text-danger">{{ $message}}</span>
                                 @enderror

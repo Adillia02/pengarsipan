@@ -70,13 +70,15 @@
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->telephone }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('akta_keluar.edit', ['id' => $data->id]) }}">Ubah</a>
-                                        <a class="btn btn-rounded btn-primary btn-sm" href="{{ route('akta_keluar.show', ['id' => $data->id]) }}">Lihat</a>
+                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('akta_keluar.edit', ['id' => $data->id]) }}"><i class="fas fa-edit"></i> Ubah</a>
+                                        <a class="btn btn-rounded btn-primary btn-sm" href="{{ route('akta_keluar.show', ['id' => $data->id]) }}"><i class="fas fa-eye"></i> Lihat</a>
                                         <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline"
                                             action="{{ route('akta_keluar.destroy', [$data->id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <input type="submit" value="Hapus" class="btn btn-rounded btn-danger btn-sm">
+                                            <button type="submit" value="Hapus" class="btn btn-rounded btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </button>
 
                                         </form>
                                     </td>

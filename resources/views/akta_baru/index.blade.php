@@ -75,13 +75,15 @@
                                     {{-- <td>{{ $akta->deed_copy }}</td> --}}
                                     {{-- <td class="text-center"><span class="badge badge-pill badge-{{ $akta->status == 1 ? 'success' : 'secondary' }}">{{ $akta->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</span></td> --}}
                                     <td class="text-center">
-                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('akta_baru.edit', ['id' => $akta->id]) }}">Ubah</a>
+                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('akta_baru.edit', ['id' => $akta->id]) }}"> <i class="fas fa-edit"></i> Ubah</a>
                                         {{-- <a class="btn btn-rounded btn-primary btn-sm" href="{{ route('akta_baru.show', ['id' => $akta->id]) }}">Lihat</a> --}}
                                         <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline"
                                             action="{{ route('akta_baru.destroy', [$akta->id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <input type="submit" value="Hapus" class="btn btn-rounded btn-danger btn-sm">
+                                            <button type="submit" value="Hapus" class="btn btn-rounded btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </button>
 
                                         </form>
                                     </td>

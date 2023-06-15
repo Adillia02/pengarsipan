@@ -15,7 +15,10 @@
             </div>
             <div class="col-5 align-self-center">
                 <div class="float-right">
-                    <a class="btn btn-primary btn-rounded" href="{{ route('persyaratan.create') }}">Tambah Persyaratan</a>
+                    <a class="btn btn-primary btn-rounded" href="{{ route('persyaratan.create') }}">
+                        <i class="fas fa-plus"></i>
+                        Tambah Persyaratan
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,13 +65,15 @@
                                     <td>{!! $data->description !!}</td>
                                     <td class="text-center"><span class="badge badge-pill badge-{{ $data->status == 1 ? 'success' : 'secondary' }}">{{ $data->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</span></td>
                                     <td class="text-center">
-                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('persyaratan.edit', ['id' => $data->id]) }}">Ubah</a>
+                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('persyaratan.edit', ['id' => $data->id]) }}"><i class="fas fa-edit" title="ubah"> </i> Ubah</a>
                                         @if (!$data->jenis_akta)
 
                                         <form onsubmit="return confirm('Anda yakin hapus Persyaratan {{ $data->name }}?')" class="d-inline" action="{{ route('persyaratan.destroy', ['id' => $data->id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <input type="submit" value="Hapus" class="btn btn-rounded btn-danger btn-sm">
+                                            <button type="submit" value="Hapus" class="btn btn-rounded btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>Hapus
+                                            </button>
 
                                         </form>
                                     @endif

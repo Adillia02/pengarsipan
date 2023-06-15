@@ -15,7 +15,9 @@
             </div>
             <div class="col-5 align-self-center">
                 <div class="float-right">
-                    <a class="btn btn-primary btn-rounded" href="{{ route('jenis_akta.create') }}">Tambah Jenis Akta</a>
+                    <a class="btn btn-primary btn-rounded" href="{{ route('jenis_akta.create') }}">
+                        <i class="fas fa-plus"></i>
+                        Tambah Jenis Akta</a>
                 </div>
             </div>
         </div>
@@ -60,7 +62,7 @@
                                     <td>{{ $data->description }}</td>
                                     <td class="text-center"><span class="badge badge-pill badge-{{ $data->status == 1 ? 'success' : 'secondary' }}">{{ $data->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</span></td>
                                     <td class="text-center">
-                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('jenis_akta.edit', ['id' => $data->id]) }}">Ubah</a>
+                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('jenis_akta.edit', ['id' => $data->id]) }}"> <i class="fas fa-edit"></i> Ubah</a>
                                         @if ($data->akta->count() === 0 && $data->persyaratan->count() === 0)
 
                                             <form onsubmit="return confirm('Anda yakin hapus jenis akta {{ $data->name }}?')" class="d-inline"

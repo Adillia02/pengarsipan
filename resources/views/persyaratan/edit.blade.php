@@ -23,9 +23,9 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-4">
-                            <label for="jenis_akta">Jenis Akta <b class="text-danger">*</b></label>
-                            <select class="form-control" id="jenis_akta" name="jenis_akta">
-                                <option value="">--Pilih Jenis Akta--</option>
+                            <label for="jenis_akta">Jenis Akta<b class="text-danger">*</b></label>
+                            <select class="form-control @error('jenis_akta') is-invalid @enderror" id="jenis_akta" name="jenis_akta">
+                                <option value="">-Pilih Jenis Akta-</option>
 
                                 @foreach ($jenis_akta as $jenis)
                                     <option value="{{ $jenis->id }}"{{ $persyaratan->jenis_akta->id == $jenis->id ? ' selected' : '' }}>{{ $jenis->name }}</option>
@@ -37,8 +37,8 @@
                         </div>
                         <div class="form-body">
                             <div class="form-group">
-                                <label for="nama">Nama <b class="text-danger">*</b></label>
-                                <input class="form-control" type="text" name="nama" id="nama" value="{{ $persyaratan->name }}">
+                                <label for="nama">Nama<b class="text-danger">*</b></label>
+                                <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ $persyaratan->name }}">
                                 @error('nama')
                                     <span class="text-danger">{{ $message}}</span>
                                 @enderror

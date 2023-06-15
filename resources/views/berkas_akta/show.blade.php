@@ -43,27 +43,29 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <th>
                                     <p class="text-dark font-weight-600">Nomor Akta</p>
-                                </td>
+                                </th>
                                 <td>
                                     <p><?= $akta->deed_number?></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <th>
                                     <p class="text-dark font-weight-600">Tanggal Akta</p>
-                                </td>
+                                </th>
                                 <td>
                                     <p><?= $akta->deed_date?></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <th>
                                     <p class="text-dark font-weight-600">Nama Penghadap</p>
-                                </td>
+                                </th>
                                 <td>
-                                    <p></p>
+                                    @foreach ($akta as $name)
+                                    <p>{{ $name }}</p>
+                                    @endforeach
                                 </td>
                             </tr>
                             <tr>

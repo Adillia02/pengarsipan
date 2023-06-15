@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Akta;
 use App\Models\BadanUsaha;
+use App\Models\Penghadap;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Stroage;
 
 class BerkasAktaController extends Controller
 {
-    
+
     public function index()
     {
         $badan_usaha = BadanUsaha::orderBy('id')->get();
@@ -47,7 +48,7 @@ class BerkasAktaController extends Controller
             $pdfFileSalinan->move('files/salinan/', $pdfFileNameSalinan);
 
             $akta_keluar = AktaKeluar::create([
-                'deed_id' => $request->id_akta, 
+                'deed_id' => $request->id_akta,
                 'name' => $request->nama,
                 'no_ktp' => $request->no_ktp,
                 'no_hp' => $request->no_hp,
@@ -64,7 +65,7 @@ class BerkasAktaController extends Controller
                 $akta->deed_copy = $pdfFileNameSalinan;
                 $akta->save();
             }
-            
+
             DB::commit();
             $status = 1;
         } catch (\Error $e) {

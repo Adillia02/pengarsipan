@@ -7,6 +7,7 @@
             <div class="form-group mb-4">
                 <label for="nama_usaha">Nama Usaha<b class="text-danger">*</b></label>
                 <select class="form-control js-example-basic-single @error('nama_usaha') is-invalid @enderror" id="nama_usaha" name="nama_usaha" style="width:100%">
+                    <option value="">-Pilih Akta-</option>
                     @foreach ($akta_baru as $akta)
                         <option value="{{ $akta->id }}">[{{ $akta->badan_usaha->name }}] - {{ $akta->business_name }} - {{ $akta->deed_number }}</option>
                     @endforeach
