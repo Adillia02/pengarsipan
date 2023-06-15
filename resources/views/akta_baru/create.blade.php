@@ -35,7 +35,7 @@
         <div class="flex-row">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link {{ $tab == 'akta' ? 'active' : '' }}" id="nav-akta-baru-tab" data-toggle="tab" href="#akta-baru" role="tab"
+                    <a class="nav-item nav-link {{ $tab == 'akta-baru' ? 'active' : '' }}" id="nav-akta-baru-tab" data-toggle="tab" href="#akta-baru" role="tab"
                         aria-controls="nav-home" aria-selected="true">Data Akta</a>
                     <a class="nav-item nav-link {{ $tab == 'penghadap' ? 'active' : '' }}" id="nav-penghadap-tab" data-toggle="tab" href="#penghadap" role="tab"
                         aria-controls="nav-profile" aria-selected="false">Penghadap</a>
