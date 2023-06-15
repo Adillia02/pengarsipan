@@ -62,9 +62,6 @@ class AktaBaruController extends Controller
             $pdfFileNameDraft = date('Ymdhis'). '_' . 'Draft Akta' . '_' . $request->nama_usaha. '.' . $request->file('draft')->getClientOriginalExtension();
             $pdfFileDraft->move('files/draft/', $pdfFileNameDraft);
 
-            // $pdfFileSalinan = $request->file('salinan');
-            // $pdfFileNameSalinan = date('Ymdhis'). '_' . 'Salinan Akta' . '_' . $request->nama_usaha. '.' . $request->file('salinan')->getClientOriginalExtension();
-            // $pdfFileSalinan->move('files/salinan/', $pdfFileNameSalinan);
             $akta = Akta::create([
                 'business_entity_id' => $request->badan_usaha,
                 'deed_type_id' => $request->jenis_akta,
@@ -75,7 +72,7 @@ class AktaBaruController extends Controller
                 'deed_draft' => $pdfFileNameDraft,
                 'deed_copy' => '',
                 'description' => $request->deskripsi,
-                'created_id' => 1,
+                'created_id' => Auth::id(),
                 'updated_id' => 1,
             ]);
 
@@ -90,8 +87,7 @@ class AktaBaruController extends Controller
         return redirect()
             ->route('akta_baru.create')
             ->with('status', $status)
-            ->with('type', 'create')
-            ->with('tab', 'akta');
+            ->with('type', 'create');
 
 
     }

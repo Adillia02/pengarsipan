@@ -90,46 +90,15 @@
     <script>
 
         $(document).ready(function() {
-            $('.js-example').select2();
-            $('.js-example-basic-single').select2();
+            // $('.js-example').select2();
+            // $('.js-example-basic-single').select2();
 
             if($("#alert-status").length > 0){
                 setTimeout(() => {
                     $('#alert-status').alert('close');
                 }, 3000);
             }
-            // $('[name="akta"]').on('change', pilihUsaha);
-            // $('#akta').on('change', function() {
-            //     let aktaId = $(this).val();
-            //     getJenisAkta(aktaId);
-            //     console.log(aktaId);
-            // });
-
-            // function getJenisAkta(aktaId) {
-            // $.ajax({
-            //     url: '/get-jenis-akta', // Ganti dengan URL endpoint Anda
-            //     type: 'GET',
-            //     data: { aktaId: aktaId },
-            //     success: function(response) {
-            //         let jenisAkta = response.jenisAkta;
-            //         let persyaratan = response.persyaratan;
-            //         console.log(persyaratan);
-            //         $('#jenis_akta').val(persyaratan);
-            //     },
-            //     error: function(xhr, status, error) {
-            //         console.log('Terjadi kesalahan: ' + error);
-            //     }
-            // });
-            // }
         });
-
-        // function pilihUsaha(){
-        //     // console.log($('[name="akta"]'));
-        //     // let usaha = $('[name="akta"]').val();
-        //     let usaha = $('[name="akta"] option:selected').text();
-
-        //     console.log(usaha);
-        // }
 
     </script>
 @endsection
