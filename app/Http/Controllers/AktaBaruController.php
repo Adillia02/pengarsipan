@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Akta;
 use App\Models\JenisAkta;
-use App\Models\BadanUsaha;
 use App\Models\Penghadap;
+use App\Models\BadanUsaha;
 use App\Models\Persyaratan;
 use Illuminate\Http\Request;
+use App\Models\PersyaratanAkta;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Stroage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Stroage;
 
 class AktaBaruController extends Controller
 {
@@ -47,7 +49,7 @@ class AktaBaruController extends Controller
             'jenis_akta' => $jenis_akta,
             'badan_usaha' => $badan_usaha,
             'akta_baru' => $akta_baru,
-            'tab' => 'akta'
+            'tab' => 'akta-baru'
         ]);
     }
 
@@ -62,6 +64,9 @@ class AktaBaruController extends Controller
             $pdfFileNameDraft = date('Ymdhis'). '_' . 'Draft Akta' . '_' . $request->nama_usaha. '.' . $request->file('draft')->getClientOriginalExtension();
             $pdfFileDraft->move('files/draft/', $pdfFileNameDraft);
 
+            // $pdfFileSalinan = $request->file('salinan');
+            // $pdfFileNameSalinan = date('Ymdhis'). '_' . 'Salinan Akta' . '_' . $request->nama_usaha. '.' . $request->file('salinan')->getClientOriginalExtension();
+            // $pdfFileSalinan->move('files/salinan/', $pdfFileNameSalinan);
             $akta = Akta::create([
                 'business_entity_id' => $request->badan_usaha,
                 'deed_type_id' => $request->jenis_akta,
@@ -73,7 +78,7 @@ class AktaBaruController extends Controller
                 'deed_copy' => '',
                 'description' => $request->deskripsi,
                 'created_id' => Auth::id(),
-                'updated_id' => 1,
+                'updated_id' => Auth::id(),
             ]);
 
             DB::commit();
@@ -87,7 +92,8 @@ class AktaBaruController extends Controller
         return redirect()
             ->route('akta_baru.create')
             ->with('status', $status)
-            ->with('type', 'create');
+            ->with('type', 'create')
+            ->with('tab', 'akta');
 
 
     }
@@ -150,8 +156,8 @@ class AktaBaruController extends Controller
             $akta->deed_draft = $pdfFileNameDraft;
             // $akta->deed_copy = $pdfFileNameSalinan;
             $akta->description = $request->deskripsi;
-            $akta->created_id = 1;
-            $akta->updated_id = 1;
+            $akta->created_id = Auth::id();
+            $akta->updated_id = Auth::id();
 
             $akta->save();
 
@@ -196,6 +202,8 @@ class AktaBaruController extends Controller
 
         DB::beginTransaction();
         try {
+            $kodeFile = $requestPenghadap->kode_file;
+            $filePenghadap = $requestPenghadap->file_penghadap;
 
             // $pdfFileSalinan = $request->file('salinan');
             // $pdfFileNameSalinan = date('Ymdhis'). '_' . 'Salinan Akta' . '_' . $request->nama_usaha. '.' . $request->file('salinan')->getClientOriginalExtension();
@@ -205,25 +213,30 @@ class AktaBaruController extends Controller
                 'name' => $requestPenghadap->nama_penghadap,
                 'part' => $requestPenghadap->penghadap_sebagai,
                 'description' => $requestPenghadap->deskripsi,
-                'created_id' => 1,
-                'updated_id' => 1,
+                'created_id' => Auth::id(),
+                'updated_id' => Auth::id(),
             ]);
             // var_dump($penghadap); die;
-            // dd($requestPenghadap->all());
-
-            // $pdfFileDraft = $requestPenghadap->file('draft');
-            // $pdfFileNameDraft = date('Ymdhis'). '_' . 'Draft Akta' . '_' . $request->nama_usaha. '.' . $request->file('draft')->getClientOriginalExtension();
-            // $pdfFileDraft->move('files/draft/', $pdfFileNameDraft);
+            // dd($penghadap->deed_id);
+            // dd(2<(count($filePenghadap)));
 
 
-            // $persyaratan_akta = PersyaratanAkta::create([
-            //     'attendess_id' => $penghadap->id,
-            //     'deed_id' => ,
-            //     'requirement_id' => ,
-            //     'file' => $request->file_penghadap,
-            //     'created_id' => 1,
-            //     'updated_id' => 1,
-            // ]);
+
+            for ($i=0; $i < count($kodeFile); $i++) {
+                $pdfFileDraft = $filePenghadap[$i];
+                $pdfFileNameDraft = date('Ymdhis'). '_' . 'Draft Akta' . '_' . $requestPenghadap->nama_usaha. '.' . $filePenghadap[$i]->getClientOriginalExtension();
+                $pdfFileDraft->move('files/draft/', $pdfFileNameDraft);
+
+                $persyaratan_akta = PersyaratanAkta::create([
+                    'attendees_id' => $penghadap->id,
+                    'deed_id' => $requestPenghadap->akta,
+                    'requirement_id' => $kodeFile[$i],
+                    'file' => $pdfFileNameDraft,
+                    'created_id' => Auth::id(),
+                    'updated_id' => Auth::id(),
+                ]);
+            }
+
 
             DB::commit();
             $status = 1;
@@ -236,8 +249,7 @@ class AktaBaruController extends Controller
         return redirect()
             ->route('akta_baru.create')
             ->with('status', $status)
-            ->with('type', 'create')
-            ->with('tab', 'penghadap');
+            ->with('type', 'create');
     }
 
     public function show($id)
@@ -245,56 +257,7 @@ class AktaBaruController extends Controller
         $akta = Akta::findorfail($id);
 
         return view("akta_baru.show", ['akta' => $akta]);
-    }
 
-    public function storeLampiran(Request $requestLampiran)
-    {
-        // $this->validateRequestLampiran($requestLampiran);
-
-        DB::beginTransaction();
-        try {
-
-            // $pdfFileSalinan = $request->file('salinan');
-            // $pdfFileNameSalinan = date('Ymdhis'). '_' . 'Salinan Akta' . '_' . $request->nama_usaha. '.' . $request->file('salinan')->getClientOriginalExtension();
-            // $pdfFileSalinan->move('files/salinan/', $pdfFileNameSalinan);
-            $penghadap = Penghadap::create([
-                'deed_id' => $requestPenghadap->akta,
-                'name' => $requestPenghadap->nama_penghadap,
-                'part' => $requestPenghadap->penghadap_sebagai,
-                'description' => $requestPenghadap->deskripsi,
-                'created_id' => 1,
-                'updated_id' => 1,
-            ]);
-            // var_dump($penghadap); die;
-            // dd($requestPenghadap->all());
-
-            // $pdfFileDraft = $requestPenghadap->file('draft');
-            // $pdfFileNameDraft = date('Ymdhis'). '_' . 'Draft Akta' . '_' . $request->nama_usaha. '.' . $request->file('draft')->getClientOriginalExtension();
-            // $pdfFileDraft->move('files/draft/', $pdfFileNameDraft);
-
-
-            // $persyaratan_akta = PersyaratanAkta::create([
-            //     'attendess_id' => $penghadap->id,
-            //     'deed_id' => ,
-            //     'requirement_id' => ,
-            //     'file' => $request->file_penghadap,
-            //     'created_id' => 1,
-            //     'updated_id' => 1,
-            // ]);
-
-            DB::commit();
-            $status = 1;
-        } catch (\Error $e) {
-
-            DB::rollBack();
-            $status = 0;
-        }
-
-        return redirect()
-            ->route('akta_baru.create')
-            ->with('status', $status)
-            ->with('type', 'create')
-            ->with('tab', 'penghadap');
     }
 
     protected function validateRequest(Request $request)
@@ -307,9 +270,6 @@ class AktaBaruController extends Controller
             'nama_usaha' => 'required',
             'alamat' => 'required',
             'draft' => 'required',
-            'akta' => 'required',
-            'nama_penghadap' => 'required',
-            'penghadap_sebagai' => 'required',
         ],[
             'required' => ':Attribute harus diisi.',
         ]);
@@ -326,30 +286,27 @@ class AktaBaruController extends Controller
         ]);
     }
 
-    // public function getJenisAkta(Request $request)
-    // {
-    //     $aktaId = $request->input('aktaId');
+    public function getJenisAkta(Request $request)
+    {
+        $aktaId = $request->input('aktaId');
 
-    //     // Mengambil data akta dari database berdasarkan ID
-    //     $akta = Akta::find($aktaId);
+        // Mengambil data akta dari database berdasarkan ID
+        $akta = Akta::find($aktaId);
 
-    //     if ($akta) {
-    //         $idJenisAkta = $akta->deed_type_id;
-    //         $jenisAkta = JenisAkta::find($idJenisAkta);
-    //         $persyaratan = [];
-    //         if($jenisAkta){
-    //             // $idJenisAkta = $akta->deed_type_id;
-    //             // $id = $jenisAkta->id;
-    //             $idPersyaratan = Persyaratan::find($idJenisAkta);
-    //             $persyaratan = Persyaratan::where('deed_type_id', $idJenisAkta)->get();
-    //             var_dump($persyaratan);
-    //         }
-    //         var_dump($jenisAkta);
+        if ($akta) {
+            $persyaratan = [];
+                $idJenisAkta = $akta->deed_type_id;
+                // $id = $jenisAkta->id;
+                $persyaratan = Persyaratan::where('deed_type_id', $idJenisAkta)
+                    ->where('status_personal', $request->jenis)
+                    ->get();
+                // var_dump($persyaratan);
+            // var_dump($jenisAkta);
 
-    //         // var_dump($ersyaratan);
-    //         return response()->json(['jenisAkta' => $jenisAkta, 'persyaratan' => $persyaratan]);
-    //     }
+            // var_dump($ersyaratan);
+            return response()->json(['persyaratan' => $persyaratan]);
+        }
 
-    //     return response()->json(['error' => 'Akta tidak ditemukan'], 404);
-    // }
+        return response()->json(['error' => 'Akta tidak ditemukan'], 404);
+    }
 }
