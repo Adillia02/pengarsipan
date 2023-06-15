@@ -48,7 +48,7 @@
             @endif
 
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade {{ $tab == 'akta' ? 'show active' : '' }}" id="akta-baru" role="tabpanel" aria-labelledby="nav-akta-baru-tab">
+                <div class="tab-pane fade {{ $tab == 'akta-baru' ? 'show active' : '' }}" id="akta-baru" role="tabpanel" aria-labelledby="nav-akta-baru-tab">
                     @include('akta_baru.aktabaru')
                 </div>
                 <div class="tab-pane fade {{ $tab == 'penghadap' ? 'show active' : '' }}" id="penghadap" role="tabpanel" aria-labelledby="nav-penghadap-tab">
