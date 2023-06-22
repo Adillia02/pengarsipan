@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penghadap extends Model
+class PersyaratanAkta extends Model
 {
     use HasFactory;
 
@@ -12,7 +12,7 @@ class Penghadap extends Model
     protected $fillable = [
         'attendees_id',
         'deed_id',
-        'requirements_id',
+        'requirement_id',
         'file',
         'created_id',
         'updated_id',

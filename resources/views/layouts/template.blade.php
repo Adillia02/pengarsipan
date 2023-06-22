@@ -58,7 +58,7 @@
                     <div class="navbar-brand">
                         <!-- Logo icon -->
                         <a href="index.html">
-                            <h3 class="align-center">SIAR</h3>
+                            <h2 class="align-center">S P A N</h2>
                         </a>
                     </div>
                     <!-- ============================================================== -->
@@ -104,10 +104,10 @@
                                         class="svg-icon mr-2 ml-1"></i>
                                     Profil</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item"  href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                     <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+                                    <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
                                     Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -140,21 +140,21 @@
                             </a>
                         </li>
                         @if (Auth::user()->role != 'staff')
-
-
                             <li class="list-divider"></li>
                             <li class="nav-small-cap">
                                 <span class="hide-menu">Master</span>
                             </li>
 
                             <li class="sidebar-item {{ request()->is('badan_usaha*') ? 'active selected' : '' }}">
-                                <a class="sidebar-link sidebar-link" href="{{ route('badan_usaha.index') }}" aria-expanded="false">
+                                <a class="sidebar-link sidebar-link" href="{{ route('badan_usaha.index') }}"
+                                    aria-expanded="false">
                                     <i data-feather="briefcase" class="feather-icon"></i>
                                     <span class="hide-menu">Badan Usaha</span>
                                 </a>
                             </li>
                             <li class="sidebar-item {{ request()->is('jenis_akta*') ? 'active selected' : '' }}">
-                                <a class="sidebar-link" href="{{ route('jenis_akta.index') }}" aria-expanded="false">
+                                <a class="sidebar-link" href="{{ route('jenis_akta.index') }}"
+                                    aria-expanded="false">
                                     <i data-feather="book" class="feather-icon"></i>
                                     <span class="hide-menu">Jenis Akta</span>
                                 </a>
@@ -166,7 +166,8 @@
                                 </a>
                             </li> --}}
                             <li class="sidebar-item {{ request()->is('persyaratan*') ? 'active selected' : '' }}">
-                                <a class="sidebar-link sidebar-link" href="{{ route('persyaratan.index') }}" aria-expanded="false">
+                                <a class="sidebar-link sidebar-link" href="{{ route('persyaratan.index') }}"
+                                    aria-expanded="false">
                                     <i data-feather="book-open" class="feather-icon"></i>
                                     <span class="hide-menu">Persyaratan</span>
                                 </a>
@@ -178,19 +179,22 @@
                             <span class="hide-menu">Arsip</span>
                         </li>
                         <li class="sidebar-item {{ request()->is('akta_baru*') ? 'active selected' : '' }}">
-                            <a class="sidebar-link sidebar-link" href="{{route('akta_baru.index')}}" aria-expanded="false">
+                            <a class="sidebar-link sidebar-link" href="{{ route('akta_baru.index') }}"
+                                aria-expanded="false">
                                 <i data-feather="file-plus" class="feather-icon"></i>
                                 <span class="hide-menu">Akta Baru</span>
                             </a>
                         </li>
                         <li class="sidebar-item {{ request()->is('akta_keluar*') ? 'active selected' : '' }}">
-                            <a class="sidebar-link sidebar-link" href="{{route('akta_keluar.index')}}" aria-expanded="false">
+                            <a class="sidebar-link sidebar-link" href="{{ route('akta_keluar.index') }}"
+                                aria-expanded="false">
                                 <i data-feather="clipboard" class="feather-icon"></i>
                                 <span class="hide-menu">Akta Keluar</span>
                             </a>
                         </li>
                         <li class="sidebar-item {{ request()->is('berkas_akta*') ? 'active selected' : '' }}">
-                            <a class="sidebar-link sidebar-link"  href="{{route('berkas_akta.index')}}" aria-expanded="false">
+                            <a class="sidebar-link sidebar-link" href="{{ route('berkas_akta.index') }}"
+                                aria-expanded="false">
                                 <i data-feather="file-text" class="feather-icon"></i>
                                 <span class="hide-menu">Berkas Akta</span>
                             </a>
@@ -201,7 +205,7 @@
                             <li class="nav-small-cap"><span class="hide-menu">Pengaturan</span></li>
 
                             <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
-                                    href="{{route('user.index')}}" aria-expanded="false"><i data-feather="user"
+                                    href="{{ route('user.index') }}" aria-expanded="false"><i data-feather="user"
                                         class="feather-icon"></i><span class="hide-menu">User
                                     </span></a>
                             </li>
@@ -221,6 +225,33 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex align-items-center">
+                            @php
+                                $uri = Request::path();
+                                $uri = explode('/', $uri)[0];
+                                $href = '/';
+                            @endphp
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item"><a href="/home">Dashboard</a>
+                                    </li>
+                                    @php
+                                        $href .= $uri . '/';
+                                        $uri = ucfirst(str_replace('_', ' ', $uri));
+                                    @endphp
+                                    <li class="breadcrumb-item"><a
+                                            href="{{ $href }}">{{ $uri }}</a>
+                                    </li>
+                                </ol>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             @yield('content')
 

@@ -4,14 +4,6 @@
         <div class="row">
             <div class="col-7 align-self-center">
                 <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Akta Baru</h2>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
             </div>
             <div class="col-5 align-self-center">
                 <div class="float-right">
@@ -58,7 +50,7 @@
                                 {{-- <th scope="col" class="text-center">Draft Akta</th>
                                 <th scope="col" class="text-center">Salinan Akta</th>
                                 <th scope="col" class="text-center">Status</th> --}}
-                                <th scope="col" class="text-center">Aksi</th>
+                                {{-- <th scope="col" class="text-center">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -74,10 +66,10 @@
                                     {{-- <td>{{ $akta->deed_draft }}</td> --}}
                                     {{-- <td>{{ $akta->deed_copy }}</td> --}}
                                     {{-- <td class="text-center"><span class="badge badge-pill badge-{{ $akta->status == 1 ? 'success' : 'secondary' }}">{{ $akta->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</span></td> --}}
-                                    <td class="text-center">
-                                        <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('akta_baru.edit', ['id' => $akta->id]) }}"> <i class="fas fa-edit"></i> Ubah</a>
+                                    {{-- <td class="text-center"> --}}
+                                        {{-- <a class="btn btn-rounded btn-warning btn-sm" href="{{ route('akta_baru.edit', ['id' => $akta->id]) }}"> <i class="fas fa-edit"></i> Ubah</a> --}}
                                         {{-- <a class="btn btn-rounded btn-primary btn-sm" href="{{ route('akta_baru.show', ['id' => $akta->id]) }}">Lihat</a> --}}
-                                        <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline"
+                                        {{-- <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline"
                                             action="{{ route('akta_baru.destroy', [$akta->id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
@@ -85,8 +77,8 @@
                                                 <i class="fas fa-trash"></i> Hapus
                                             </button>
 
-                                        </form>
-                                    </td>
+                                        </form> --}}
+                                    {{-- </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

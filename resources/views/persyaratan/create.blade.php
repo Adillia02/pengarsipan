@@ -4,14 +4,6 @@
         <div class="row">
             <div class="col-7 align-self-center">
                 <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Persyaratan</h2>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>

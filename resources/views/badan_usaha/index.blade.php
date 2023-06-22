@@ -4,19 +4,6 @@
         <div class="row">
             <div class="col-7 align-self-center">
                 <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Badan Usaha</h2>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            {{-- @foreach ($breadcrumb as $item)
-                                @if ($item['url'])
-                                    <li class="breadcrumb-item"><a href="{{ $item['url'] }}">{{ $item['title'] }}</a></li>
-                                @else
-                                    <li class="breadcrumb-item active" aria-current="page">{{ $item['title'] }}</li>
-                                @endif
-                            @endforeach --}}
-                        </ol>
-                    </nav>
-                </div>
             </div>
             <div class="col-5 align-self-center">
             <div class="float-right">
@@ -61,10 +48,7 @@
                     </div>
                 </div>
             @endif
-<div class="float-right">
-    <a class="btn btn-primary btn-rounded" href="{{ route('badan_usaha.create') }}">
-    <i class="fas fa-plus"></i>Tambah Badan Usaha</a>
-</div>
+
 <div class="col-12">
     <div class="card p-4">
         <table class="table table-responsive table-sm mb-0" id="tableJabatan">

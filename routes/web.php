@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('berkas_akta', BerkasAktaController::class)->parameters(['berkas_akta' => 'id']);
     Route::resource('user', UserController::class)->parameters(['user' => 'id']);
     Route::post('/akta_baru/penghadap', [AktaBaruController::class, 'storePenghadap'])->name('akta_baru.storePenghadap');
+    Route::post('/akta_baru/lampiran', [AktaBaruController::class, 'storeLampiran'])->name('akta_baru.storeLampiran');
     Route::get('/get-jenis-akta', [AktaBaruController::class, 'getJenisAkta'])->name('akta_baru.getJenisAkta');
 
 
