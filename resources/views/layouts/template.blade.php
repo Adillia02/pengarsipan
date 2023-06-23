@@ -57,7 +57,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="{{ route('home')}}">
                             <h2 class="align-center">S P A N</h2>
                         </a>
                     </div>
@@ -134,7 +134,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
-                            <a class="sidebar-link sidebar-link" href="index.html" aria-expanded="false">
+                            <a class="sidebar-link sidebar-link" href="{{ route('home')}}" aria-expanded="false">
                                 <i data-feather="home" class="feather-icon"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
@@ -256,8 +256,7 @@
             @yield('content')
 
             <footer class="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a
-                    href="https://wrappixel.com">WrapPixel</a>.
+                Designed and Developed by Adillia.
             </footer>
         </div>
     </div>
