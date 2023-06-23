@@ -42,7 +42,7 @@ class Akta extends Model
 
     public function penghadap()
     {
-        return $this->hasMany(Penghadap::class);
+        return $this->hasMany(Penghadap::class, 'deed_id');
     }
 
     public function persyaratan_akta()

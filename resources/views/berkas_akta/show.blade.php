@@ -55,9 +55,11 @@
                                     <p class="text-dark font-weight-600">Nama Penghadap</p>
                                 </th>
                                 <td>
-                                    @foreach ($akta as $name)
-                                    <p>{{ $name }}</p>
-                                    @endforeach
+                                    <ol type="1">
+                                        @foreach ($akta->penghadap as $penghadap)
+                                        <li>{{ $penghadap->name }}</li>
+                                        @endforeach
+                                    </ol>
                                 </td>
                             </tr>
                             <tr>
