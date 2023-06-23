@@ -129,9 +129,9 @@
                                 </div>
                                 @endif
                                 @if (!$file_exists_salinan)
-                                    <p class="mt-5">File tidak tersedia.</p>
-                                @else
                                     <iframe height="700" width="100%" src="{{ asset('files/salinan/'.$akta->deed_copy) }}" frameborder="0" class="mt-4 mb-4"></iframe>
+                                @else
+                                    <p class="mt-5">File tidak tersedia.</p>
                                 @endif
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
